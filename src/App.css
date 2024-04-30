@@ -1,38 +1,66 @@
-.App {
+@import url('root.css');
+
+.header{
+  background-color: #504968;
+  padding: 30px 0;
+}
+h1{
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main_content_container{
+  padding: 150px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.description{
+  font-size: 25px;
+  text-align: center;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.search_container{
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: 30px 0px;
+}
+.search_button{
+  position: absolute;
+  color: black;
+  background-color: rgba(151, 146, 155, 0.452);
+  text-align: left;
+  transform: translate(2px, 2px);
+  height: 46px;
+  cursor: pointer;
+  width: 25px;
+  border-radius: 5px 0px 0px 5px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
-
-.App-link {
-  color: #61dafb;
+.search_icon{
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search_input{
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  max-width: 90vw;
+  width: 800px;
+  height: 50px;
+  padding: 0 30px;
+  border: 2px solid #d1c3ff;
+  font-size: 20px;
+}
+.products{
+  display: flex;
+  padding: 20px;
+  background-color: var(--light_purple);
+  max-width: 90vw;
+  width: 500px;
+  height: 650px;
+  border-radius: 10px;
+  overflow-y: auto;
+}
+.titulo_pesquisa{
+  text-align: center;
 }

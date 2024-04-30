@@ -1,23 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import { FaSearch } from 'react-icons/fa';
+import { useState } from 'react';
 
 function App() {
+  const [Search, setSearch] = useState('')
+  const [Display, setDisplay] = useState(false)
+
+  function search_products () {
+    console.log(Search)
+    setDisplay(!Display)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='header_container'>
+        <header className='header'>
+          <h1>
+            Amazon Products
+          </h1>
+        </header>
+      </div>
+      <main className='main_content_container'>
+        <section className='content'>
+          <div>
+          <p className='description'>
+            Procure aqui os seus produtos na amazon
+          </p>
+          <div className='search_container'>
+            <button onClick={(e) => {search_products()}} className='search_button'>
+              <FaSearch className='search_icon'/>
+            </button>
+            <input onChange={(e) => {setSearch(e.target.value)}} value={Search} placeholder='Chave de fenda' className='search_input'/>
+          </div>
+          </div>
+        </section>
+
+        { Display &&
+          <section className='products'>
+            <h2 className='Titulo pesquisa'>
+              Produtos Relacionados a {Search}
+            </h2>
+        </section>}
+      </main>
     </div>
   );
 }
