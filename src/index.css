@@ -12,4 +12,6 @@ html,body {
   height: 100vh;
   background-color: var(--dark_purle);
   color: white;
+  overflow-x: hidden;
+  padding: 0px 0px 30px 0px;
 }

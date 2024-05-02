@@ -4,11 +4,13 @@ import { useState } from 'react';
 
 function App() {
   const [Search, setSearch] = useState('')
+  const [ActualSearch, setActualSearch] = useState('')
   const [Display, setDisplay] = useState(false)
 
   function search_products () {
     console.log(Search)
     setDisplay(!Display)
+    setActualSearch(Search)
   }
   return (
     <div className="App">
@@ -37,7 +39,7 @@ function App() {
         { Display &&
           <section className='products'>
             <h2 className='Titulo pesquisa'>
-              Produtos Relacionados a {Search}
+              Produtos Relacionados a {ActualSearch}
             </h2>
         </section>}
       </main>
