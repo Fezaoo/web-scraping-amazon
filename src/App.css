@@ -57,6 +57,7 @@ h1 {
 
 .products {
   display: flex;
+  flex-direction: column;
   padding: 20px;
   background-color: var(--light_purple);
   max-width: 90vw;
@@ -64,8 +65,26 @@ h1 {
   height: 350px;
   border-radius: 10px;
   overflow-y: auto;
+  gap: 10px;
 }
 
-.titulo_pesquisa {
+.products {
   text-align: center;
 }
+.valores_pesquisa{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+}
+.valor_pesquisa{
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+.legenda_valor{
+  margin-bottom: 10px;
+}
+
