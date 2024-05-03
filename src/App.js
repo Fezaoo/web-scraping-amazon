@@ -2,12 +2,18 @@ import './App.css';
 import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
 import axios from 'axios'
-
+import ProductList from './ProductList';
+import { useEffect } from 'react';
 
 function App() {
   const [Search, setSearch] = useState('')
   const [ActualSearch, setActualSearch] = useState('')
-  const [Display, setDisplay] = useState(false)
+  const [Display, setDisplay] = useState(true)
+  const [Data, setData] = useState([{
+    "price": "$10.99",
+    "rating": "3.3\n               \n\n\n                 3.3 out of 5 stars",
+    "title": "300db car horn 【2 pack】 12v waterproof double horn, used for trucks, trains and ships, electric snails for cars, motorcycles, alternative electronic parts for cars (red)"
+}])
   const [ItemTitulo, setItemTitulo] = useState()
   const [ItemPreco, setItemPreco] = useState()
   const [ItemAvaliacao, setItemAvaliacao] = useState()
@@ -18,12 +24,8 @@ function App() {
     setActualSearch(Search)
     axios.get(`http://127.0.0.1:5000/api/dados?query=${Search}`)
     .then(response => {
-      const data = response.data
-      setItemTitulo(data['title'])
-      setItemPreco(data['price'])
-      setItemAvaliacao(data['rating'])
+      setData(response.data)
       console.log('Dados recebidos:', response.data);
-
     })
     .catch(error => {
       console.error('Erro ao buscar dados:', error);
@@ -60,15 +62,7 @@ function App() {
             <h2 className='titulo_pesquisa'>
               Produtos Relacionados a: {ActualSearch}
             </h2>
-            <div className='resultado_pesquisa'>
-              <h3 className=''>
-                {ItemTitulo}
-              </h3>
-              <div className='valores_pesquisa'>
-                  <div className='item_preco valor_pesquisa'><h3 className='legenda_valor'>Preço</h3> {ItemPreco}</div>
-                  <div className='item_avaliacao valor_pesquisa'><h3 className='legenda_valor'>Avaliações</h3> {ItemAvaliacao}</div>
-              </div>
-            </div>
+          <ProductList data={Data}/> 
         </section>}
       </main>
     </div>

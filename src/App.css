@@ -67,14 +67,19 @@ h1 {
   overflow-y: auto;
   gap: 10px;
 }
-
 .products {
   text-align: center;
+}
+.resultado_pesquisa{
+  margin: 10px 0;
+}
+.item_titulo{
+  font-size: 15px;
 }
 .valores_pesquisa{
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
+  margin-top: 10px;
   justify-content: center;
   align-items: center;
   gap: 35px;
