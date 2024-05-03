@@ -25,7 +25,7 @@ def dados():
         soup2 = BeautifulSoup(soup1.prettify(), 'html.parser')
         links = soup2.find_all('a', attrs={'class':'a-link-normal s-no-outline'})
         link_list = list()
-        c = 0
+        c = 1
         for link in links:
             link_list.append(link.get('href'))
             if c >= 3: break
@@ -39,6 +39,7 @@ def dados():
             title = soup2.find('span', attrs= {'id':"productTitle"})
             price = soup2.find('span', attrs={'class':"aok-offscreen"})
             rating = soup2.find(id="acrPopover")
+            image = soup2.find('div', attrs={'id':"imgTagWrapperId"})
             if title:
                 title = title.get_text().strip()
             if price:
@@ -47,11 +48,14 @@ def dados():
             if rating:
                 rating = rating.get_text().strip()
                 rating = rating.split()[0]
+            if image:
+                image = image.find('img').get('src')
             data_response.append(            
                 {'title': title,
                     'price': price,
                     'rating': rating,
                     'link': base_url + link,
+                    'image':image
             })
         return jsonify(data_response)
 

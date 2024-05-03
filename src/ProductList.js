@@ -11,6 +11,7 @@ function ProductList({ data }) {
           rating={product.rating}
           title={product.title}
           link={product.link}
+          image={product.image}
         />
       ))}
     </div>
