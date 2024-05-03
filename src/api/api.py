@@ -25,11 +25,13 @@ def dados():
         soup2 = BeautifulSoup(soup1.prettify(), 'html.parser')
         links = soup2.find_all('a', attrs={'class':'a-link-normal s-no-outline'})
         link_list = list()
+        c = 0
         for link in links:
             link_list.append(link.get('href'))
-        titulos = list()
-        precos = list()
-        ratings = list()
+            if c >= 4: break
+            c+=1
+
+        data_response = []
         for link in link_list:
             new_page = requests.get(f'{base_url}{link}', headers=headers)
             soup1 = BeautifulSoup(new_page.content, 'html.parser')
@@ -39,19 +41,16 @@ def dados():
             rating = soup2.find(id="acrPopover")
             if title:
                 title = title.get_text().strip()
-                titulos.append(title)
             if price:
                 price = price.get_text().strip()
-                precos.append(price)
             if rating:
                 rating = rating.get_text().strip()
-                ratings.append(rating)
-        return jsonify(
-            {'title': titulos,
-                    'price': precos,
-                    'rating': ratings
-            }
-            )
+            data_response.append(            
+                {'title': title,
+                    'price': price,
+                    'rating': rating
+            })
+        return jsonify(data_response)
 
 if __name__ == '__main__':
     app.run(debug=True)
