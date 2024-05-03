@@ -43,8 +43,10 @@ def dados():
                 title = title.get_text().strip()
             if price:
                 price = price.get_text().strip()
+                price = price.split()[0]
             if rating:
                 rating = rating.get_text().strip()
+                rating = rating.split()[0]
             data_response.append(            
                 {'title': title,
                     'price': price,

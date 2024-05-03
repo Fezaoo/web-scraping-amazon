@@ -1,31 +1,28 @@
 import './App.css';
 import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import axios from 'axios'
 import ProductList from './ProductList';
 import { useEffect } from 'react';
 
 function App() {
+  const [Loading, setLoading] = useState(false)
   const [Search, setSearch] = useState('')
   const [ActualSearch, setActualSearch] = useState('')
   const [Display, setDisplay] = useState(true)
-  const [Data, setData] = useState([{
-    "price": "$10.99",
-    "rating": "3.3\n               \n\n\n                 3.3 out of 5 stars",
-    "title": "300db car horn 【2 pack】 12v waterproof double horn, used for trucks, trains and ships, electric snails for cars, motorcycles, alternative electronic parts for cars (red)"
-}])
-  const [ItemTitulo, setItemTitulo] = useState()
-  const [ItemPreco, setItemPreco] = useState()
-  const [ItemAvaliacao, setItemAvaliacao] = useState()
+  const [Data, setData] = useState()
 
   function search_products () {
     console.log(Search)
-    setDisplay(!Display)
+    setLoading(true)
+    if (!Display){setDisplay(true)}
     setActualSearch(Search)
     axios.get(`http://127.0.0.1:5000/api/dados?query=${Search}`)
     .then(response => {
       setData(response.data)
       console.log('Dados recebidos:', response.data);
+      setLoading(false)
     })
     .catch(error => {
       console.error('Erro ao buscar dados:', error);
@@ -60,7 +57,7 @@ function App() {
         { Display &&
           <section className='products'>
             <h2 className='titulo_pesquisa'>
-              Produtos Relacionados a: {ActualSearch}
+              Produtos Relacionados a: {ActualSearch} <AiOutlineLoading3Quarters className={`loading_none ${Loading ? 'loading loading_animation':''}`}/> 
             </h2>
           <ProductList data={Data}/> 
         </section>}

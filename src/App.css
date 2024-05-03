@@ -71,7 +71,7 @@ h1 {
   text-align: center;
 }
 .resultado_pesquisa{
-  margin: 10px 0;
+  margin: 30px 0;
 }
 .item_titulo{
   font-size: 15px;
@@ -93,3 +93,23 @@ h1 {
   margin-bottom: 10px;
 }
 
+.loading_none{
+  display: none;
+}
+.loading{
+  display: inline;
+  animation: spin 1s linear infinite;
+  width: 16px;
+  height: 16px;
+}
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+.loading_animation{
+  rotate: 180deg;
+}
