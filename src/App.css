@@ -62,9 +62,8 @@ h1 {
   background-color: var(--light_purple);
   max-width: 90vw;
   width: 800px;
-  height: 350px;
+  min-height: 350px;
   border-radius: 10px;
-  overflow-y: auto;
   gap: 10px;
 }
 .products {
@@ -112,4 +111,9 @@ h1 {
 }
 .loading_animation{
   rotate: 180deg;
+}
+a{
+  outline: none;
+  text-decoration: none;
+  color: white;
 }

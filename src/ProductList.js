@@ -10,6 +10,7 @@ function ProductList({ data }) {
           price={product.price}
           rating={product.rating}
           title={product.title}
+          link={product.link}
         />
       ))}
     </div>

@@ -28,7 +28,7 @@ def dados():
         c = 0
         for link in links:
             link_list.append(link.get('href'))
-            if c >= 4: break
+            if c >= 3: break
             c+=1
 
         data_response = []
@@ -50,7 +50,8 @@ def dados():
             data_response.append(            
                 {'title': title,
                     'price': price,
-                    'rating': rating
+                    'rating': rating,
+                    'link': base_url + link,
             })
         return jsonify(data_response)
 

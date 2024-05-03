@@ -26,6 +26,7 @@ function App() {
     })
     .catch(error => {
       console.error('Erro ao buscar dados:', error);
+      setLoading(false)
     });
     console.log()
   }
