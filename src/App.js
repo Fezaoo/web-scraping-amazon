@@ -16,8 +16,7 @@ function App() {
     console.log(Search)
     setDisplay(!Display)
     setActualSearch(Search)
-    const query = Search
-    axios.get(`http://127.0.0.1:5000/api/dados?query=${query}`)
+    axios.get(`http://127.0.0.1:5000/api/dados?query=${Search}`)
     .then(response => {
       const data = response.data
       setItemTitulo(data['title'])
