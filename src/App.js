@@ -14,21 +14,22 @@ function App() {
   const [Data, setData] = useState()
   const [Limit, setLimit] = useState(2)
 
-  function search_products () {
+  function search_products() {
     console.log(Search)
     setLoading(true)
-    if (!Display){setDisplay(true)}
+    if (!Display) { setDisplay(true) }
     setActualSearch(Search)
     axios.get(`http://127.0.0.1:5000/api/dados?query=${Search}&limit=${Limit}`)
-    .then(response => {
-      setData(response.data)
-      console.log('Dados recebidos:', response.data);
-      setLoading(false)
-    })
-    .catch(error => {
-      console.error('Erro ao buscar dados:', error);
-      setLoading(false)
-    });
+      .then(response => {
+        setData(response.data)
+        console.log('Dados recebidos:', response.data);
+        setLoading(false)
+      })
+      .catch(error => {
+        console.error('Erro ao buscar dados:', error);
+        setLoading(false)
+        alert('Não foi possível procurar os produtos')
+      });
     console.log()
   }
 
@@ -44,34 +45,34 @@ function App() {
       <main className='main_content_container'>
         <section className='content'>
           <div>
-          <p className='description'>
-            Procure aqui os seus produtos na amazon
-          </p>
-          <div className='search_container'>
-            <button onClick={(e) => {search_products()}} className='search_button'>
-              <FaSearch className='search_icon'/>
-            </button>
-            <input onChange={(e) => {setSearch(e.target.value)}} value={Search} placeholder='Chave de fenda' className='search_input'/>
-            <div>
-              <select value={Limit} onChange={(e) => {setLimit(e.target.value)}}>
-                <option value={2}>2</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-                <option value={10}>10</option>
-                <option value={999}>Todos</option>
-              </select>
+            <p className='description'>
+              Procure aqui os seus produtos na amazon
+            </p>
+            <div className='search_container'>
+              <button onClick={(e) => { search_products() }} className='search_button'>
+                <FaSearch className='search_icon' />
+              </button>
+              <input onChange={(e) => { setSearch(e.target.value) }} value={Search} placeholder='Chave de fenda' className='search_input' />
+              <div>
+                <select className='limit_select' value={Limit} onChange={(e) => { setLimit(e.target.value) }}>
+                  <option value={2}>2</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={999}>all</option>
+                </select>
+              </div>
             </div>
           </div>
-          </div>
         </section>
-
-        { Display &&
+        
+        {Display &&
           <section className='products'>
             <h2 className='titulo_pesquisa'>
-              Produtos Relacionados a: {ActualSearch} <AiOutlineLoading3Quarters className={`loading_none ${Loading ? 'loading loading_animation':''}`}/> 
+              Produtos Relacionados a: {ActualSearch} <AiOutlineLoading3Quarters className={`loading_none ${Loading ? 'loading loading_animation' : ''}`} />
             </h2>
-          <ProductList data={Data}/> 
-        </section>}
+            <ProductList data={Data} />
+          </section>}
       </main>
     </div>
   );

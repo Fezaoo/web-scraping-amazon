@@ -21,19 +21,23 @@ h1 {
 }
 
 .search_container {
-  position: relative;
+
+  background-color: white;
+  border: 2px solid #d1c3ff;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 20px 0;
+  max-width: 90vw;
+  width: 800px;
+  height: 50px;
+  border-radius: 5px;
 }
 
 .search_button {
-  position: absolute;
   color: black;
   background-color: rgba(151, 146, 155, 0.452);
   text-align: left;
-  transform: translate(2px, 2px);
-  height: 46px;
+  height: 100%;
   cursor: pointer;
   width: 25px;
   border-radius: 5px 0px 0px 5px;
@@ -42,19 +46,21 @@ h1 {
   align-items: center;
 }
 
-
 .search_input {
-  border-radius: 5px;
   outline: none;
   border: none;
-  max-width: 90vw;
-  width: 800px;
-  height: 50px;
-  padding: 0 30px;
-  border: 2px solid #d1c3ff;
+  padding: 0 10px;
   font-size: 20px;
+  width: 100%;
 }
-
+.limit_select{
+  background-color: rgba(151, 146, 155, 0.452);
+  border-radius: 0 5px 5px 0;
+  text-align: center;
+  outline: none;
+  width: 35px;
+  height: 100%;
+}
 .products {
   display: flex;
   flex-direction: column;

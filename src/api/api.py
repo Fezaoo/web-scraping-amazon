@@ -39,6 +39,8 @@ def dados():
             soup2 = BeautifulSoup(soup1.prettify(), 'html.parser')
             title = soup2.find('span', attrs= {'id':"productTitle"})
             price = soup2.find('span', attrs={'class':"aok-offscreen"})
+            if not price:
+                price = soup2.find('span', {'class':"a-price"})
             rating = soup2.find(id="acrPopover")
             image = soup2.find('div', attrs={'id':"imgTagWrapperId"})
             if title:
