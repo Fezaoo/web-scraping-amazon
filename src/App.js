@@ -12,13 +12,14 @@ function App() {
   const [ActualSearch, setActualSearch] = useState('')
   const [Display, setDisplay] = useState(true)
   const [Data, setData] = useState()
+  const [Limit, setLimit] = useState(2)
 
   function search_products () {
     console.log(Search)
     setLoading(true)
     if (!Display){setDisplay(true)}
     setActualSearch(Search)
-    axios.get(`http://127.0.0.1:5000/api/dados?query=${Search}`)
+    axios.get(`http://127.0.0.1:5000/api/dados?query=${Search}&limit=${Limit}`)
     .then(response => {
       setData(response.data)
       console.log('Dados recebidos:', response.data);
@@ -51,6 +52,15 @@ function App() {
               <FaSearch className='search_icon'/>
             </button>
             <input onChange={(e) => {setSearch(e.target.value)}} value={Search} placeholder='Chave de fenda' className='search_input'/>
+            <div>
+              <select value={Limit} onChange={(e) => {setLimit(e.target.value)}}>
+                <option value={2}>2</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={999}>Todos</option>
+              </select>
+            </div>
           </div>
           </div>
         </section>

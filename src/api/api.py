@@ -13,6 +13,7 @@ CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})  # Habili
 def dados():
     query = request.args.get('query')
     query = query.replace(' ', '+')
+    limit = int(request.args.get('limit', 4))
     try:
         base_url = 'https://www.amazon.com'
         url = f'{base_url}/s?k={query}'
@@ -28,7 +29,7 @@ def dados():
         c = 1
         for link in links:
             link_list.append(link.get('href'))
-            if c >= 3: break
+            if c >= limit: break
             c+=1
 
         data_response = []
