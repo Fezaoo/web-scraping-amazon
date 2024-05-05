@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import axios from 'axios'
 import ProductList from './ProductList';
-import { useEffect } from 'react';
 
 function App() {
   const [Loading, setLoading] = useState(false)
@@ -52,7 +51,7 @@ function App() {
               <button onClick={(e) => { search_products() }} className='search_button'>
                 <FaSearch className='search_icon' />
               </button>
-              <input onChange={(e) => { setSearch(e.target.value) }} value={Search} placeholder='Chave de fenda' className='search_input' />
+              <input maxLength={60} onChange={(e) => { setSearch(e.target.value) }} value={Search} placeholder='Chave de fenda' className='search_input' onKeyDown={(e) => {if (e.key === 'Enter') {search_products()}}}/>
               <div>
                 <select className='limit_select' value={Limit} onChange={(e) => { setLimit(e.target.value) }}>
                   <option value={2}>2</option>

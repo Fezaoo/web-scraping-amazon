@@ -44,6 +44,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.336);
 }
 
 .search_input {
@@ -56,6 +57,7 @@ h1 {
 .limit_select{
   background-color: rgba(151, 146, 155, 0.452);
   border-radius: 0 5px 5px 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.336);
   text-align: center;
   outline: none;
   width: 35px;
