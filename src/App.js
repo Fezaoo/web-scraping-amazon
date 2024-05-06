@@ -6,30 +6,33 @@ import axios from 'axios'
 import ProductList from './ProductList';
 
 function App() {
-  const [Loading, setLoading] = useState(false)
-  const [Search, setSearch] = useState('')
-  const [ActualSearch, setActualSearch] = useState('')
-  const [Display, setDisplay] = useState(true)
-  const [Data, setData] = useState()
-  const [Limit, setLimit] = useState(2)
+  const [Loading, setLoading] = useState(false) // Animação de Loading
+  const [Search, setSearch] = useState('') // Input 
+  const [ActualSearch, setActualSearch] = useState('') // Query realizada
+  const [Display, setDisplay] = useState(true) // Exibe o container dos produtos
+  const [Data, setData] = useState() // Resposta da API
+  const [Limit, setLimit] = useState(2) // Limite de produtos a serem pesquisados
 
   function search_products() {
-    console.log(Search)
-    setLoading(true)
-    if (!Display) { setDisplay(true) }
-    setActualSearch(Search)
-    axios.get(`http://127.0.0.1:5000/api/dados?query=${Search}&limit=${Limit}`)
-      .then(response => {
-        setData(response.data)
-        console.log('Dados recebidos:', response.data);
-        setLoading(false)
-      })
-      .catch(error => {
-        console.error('Erro ao buscar dados:', error);
-        setLoading(false)
-        alert('Não foi possível procurar os produtos')
-      });
-    console.log()
+    if (Search === '') { alert('Insira um produto para pesquisa!') } // Tratamento de erro para input vazio
+    else {
+      console.log(Search)
+      setLoading(true)
+      if (!Display) { setDisplay(true) }
+      setActualSearch(Search)
+      axios.get(`http://127.0.0.1:5000/api/dados?query=${Search}&limit=${Limit}`) // Requisição da API.  
+        .then(response => {
+          setData(response.data)
+          console.log('Dados recebidos:', response.data);
+          if (response.data === null || response.data.length === 0) { alert('Não foi possível encontrar produtos') } // Tratamento de erro
+          setLoading(false)
+        })
+        .catch(error => { // Tratamento de erro caso a requisição da API falhe
+          console.error('Erro ao buscar dados:', error);
+          setLoading(false)
+          alert('Não foi possível procurar os produtos, erro com o servidor')
+        });
+    }
   }
 
   return (
@@ -51,9 +54,9 @@ function App() {
               <button onClick={(e) => { search_products() }} className='search_button'>
                 <FaSearch className='search_icon' />
               </button>
-              <input maxLength={60} onChange={(e) => { setSearch(e.target.value) }} value={Search} placeholder='Chave de fenda' className='search_input' onKeyDown={(e) => {if (e.key === 'Enter') {search_products()}}}/>
+              <input maxLength={60} onChange={(e) => { setSearch(e.target.value) }} value={Search} placeholder='Chave de fenda' className='search_input' onKeyDown={(e) => { if (e.key === 'Enter') { search_products() } }} />
               <div>
-                <select className='limit_select' value={Limit} onChange={(e) => { setLimit(e.target.value) }}>
+                <select defaultValue={Limit} className='limit_select'  onChange={(e) => { setLimit(e.target.value) }}>
                   <option value={2}>2</option>
                   <option value={4}>4</option>
                   <option value={5}>5</option>
@@ -64,7 +67,7 @@ function App() {
             </div>
           </div>
         </section>
-        
+
         {Display &&
           <section className='products'>
             <h2 className='titulo_pesquisa'>
