@@ -50,6 +50,8 @@ def dados():
                 price = soup2.find('span', {'class':"a-price"})
             rating = soup2.find(id="acrPopover") # Obtém a tag da avaliaçãos do produto
             image = soup2.find('div', attrs={'id':"imgTagWrapperId"}) # Obtém a tag da imagem do produto
+            if not image:
+                image = soup2.find('div', attrs={'class':"image-wrapper"}) # Caso a imagem seja de audiobook
             if title:
                 title = title.get_text().strip() # Formata o título do produto
             if price:

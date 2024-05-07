@@ -11,7 +11,7 @@ function App() {
   const [ActualSearch, setActualSearch] = useState('') // Query realizada
   const [Display, setDisplay] = useState(true) // Exibe o container dos produtos
   const [Data, setData] = useState() // Resposta da API
-  const [Limit, setLimit] = useState(2) // Limite de produtos a serem pesquisados
+  const [Limit, setLimit] = useState(1) // Limite de produtos a serem pesquisados
 
   function search_products() {
     if (Search === '') { alert('Insira um produto para pesquisa!') } // Tratamento de erro para input vazio
@@ -57,8 +57,8 @@ function App() {
               <input maxLength={60} onChange={(e) => { setSearch(e.target.value) }} value={Search} placeholder='Chave de fenda' className='search_input' onKeyDown={(e) => { if (e.key === 'Enter') { search_products() } }} />
               <div>
                 <select defaultValue={Limit} className='limit_select'  onChange={(e) => { setLimit(e.target.value) }}>
-                  <option value={2}>2</option>
-                  <option value={4}>4</option>
+                  <option value={1}>1</option>
+                  <option value={3}>3</option>
                   <option value={5}>5</option>
                   <option value={10}>10</option>
                   <option value={999}>all</option>
