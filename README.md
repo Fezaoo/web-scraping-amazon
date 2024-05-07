@@ -1,4 +1,4 @@
-Amazon web-scrapping project
+Amazon web-scraping project
 
 Este projeto tem como objetivo validar conhecimentos a cerca de tecnologias como REACT, HTML, CSS, JavaScript, Python, Flask, JSON, API entre outras tecnologias frameworks e ferramentas.
 O projeto foi construído apenas por um colaborador e, este, utilizou seus conhecimentos, conhecimentos disponíveis em livros e internet, bem como ideias fornecidas por IAs.
