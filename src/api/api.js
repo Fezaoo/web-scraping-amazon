@@ -1,21 +1,10 @@
-const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
-const cors = require('cors')
 
-const app = express();
-
-app.use(cors())
-
-app.get('/', (req, res) => {
-    res.send('Welcome!');
-});
-
-app.get('/api/dados', async (req, res) => {
+async function fetchData(query, limit = 4) {
     try {
         // Parâmetros
-        let query = req.query.query.replace(' ', '+');
-        const limit = req.query.limit ? parseInt(req.query.limit) : 4;
+        query = query.replace(' ', '+');
         
         // URL e Headers
         const base_url = 'https://www.amazon.com';
@@ -54,18 +43,15 @@ app.get('/api/dados', async (req, res) => {
                 image
             });
         }
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-        res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
-        res.json(data_response);
+        return data_response;
     } catch (error) {
         console.error(`Ocorreu um erro: ${error}`);
-        res.status(500).send('Erro ao processar a requisição');
+        throw new Error('Erro ao processar a requisição');
     }
-});
+}
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
+// Exemplo de uso:
+// fetchData('chave', 1).then(data => console.log(data)).catch(error => console.error(error));
+
+module.exports = fetchData;
