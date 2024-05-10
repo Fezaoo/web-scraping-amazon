@@ -13,18 +13,18 @@ function App() {
   const [Data, setData] = useState() // Resposta da API
   const [Limit, setLimit] = useState(1) // Limite de produtos a serem pesquisados
 
-  function search_products(query, limit = 1) {
-    if (query === '') { 
+  function search_products() {
+    if (Query === '') { 
       alert('Insira um produto para pesquisa!') 
     } else {
       setLoading(true);
       if (!Display) { 
         setDisplay(true);
       }
-      setActualSearch(query);
+      setActualSearch(Query);
   
       // Chama a função fetchData com os parâmetros de pesquisa
-      fetchData(query, limit)
+      fetchData(Query, Limit)
         .then(data => {
           setData(data);
           console.log('Dados recebidos:', data);
