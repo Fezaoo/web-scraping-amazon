@@ -1,8 +1,11 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const cors = require('cors')
 
 const app = express();
+
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Welcome!');
