@@ -20,7 +20,7 @@ function App() {
       setLoading(true)
       if (!Display) { setDisplay(true) }
       setActualSearch(Search)
-      axios.get(`https://api-amazon-web-scraping-9qxnatgvl-fezaoos-projects.vercel.app/api/dados?query=${Search}&limit=${Limit}`) // Requisição da API.  
+      axios.get(`https://api-amazon-web-scraping-9qxnatgvl-fezaoos-projects.vercel.app/api/dados?query=chave&limit=1`) // Requisição da API.  
         .then(response => {
           setData(response.data)
           console.log('Dados recebidos:', response.data);
