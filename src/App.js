@@ -61,7 +61,6 @@ function App() {
                   <option value={3}>3</option>
                   <option value={5}>5</option>
                   <option value={10}>10</option>
-                  <option value={999}>all</option>
                 </select>
               </div>
             </div>
