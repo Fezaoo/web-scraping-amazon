@@ -5,7 +5,9 @@ import requests
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})  # Habilita o CORS para todas as rotas locais
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"},
+                     r"/api/*": {"origins": "https://web-scraping-amazon-d7k8fafh8-fezaoos-projects.vercel.app"}
+                     })  # Habilita o CORS para todas as rotas locais
 
 @app.route('/api/dados')
 def dados():
