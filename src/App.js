@@ -20,7 +20,7 @@ function App() {
       setLoading(true)
       if (!Display) { setDisplay(true) }
       setActualSearch(Search)
-      axios.get(`https://flask-api-amazon.vercel.app/api/dados?query=chave&limit=1`) // Requisição da API.  
+      axios.get(`https://flask-api-amazon.vercel.app`) // Requisição da API.  
         .then(response => {
           setData(response.data)
           console.log('Dados recebidos:', response.data);
