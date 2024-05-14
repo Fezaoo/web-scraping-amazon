@@ -2,12 +2,12 @@ import './App.css';
 import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import axios from 'axios'
 import ProductList from './ProductList';
+import fetchData from './api/api';
 
 function App() {
   const [Loading, setLoading] = useState(false) // Animação de Loading
-  const [Search, setSearch] = useState('') // Input 
+  const [Query, setQuery] = useState('') // Input 
   const [ActualSearch, setActualSearch] = useState('') // Query realizada
   const [Display, setDisplay] = useState(true) // Exibe o container dos produtos
   const [Data, setData] = useState() // Resposta da API
@@ -27,13 +27,14 @@ function App() {
           if (response.data === null || response.data.length === 0) { alert('Não foi possível encontrar produtos') } // Tratamento de erro
           setLoading(false)
         })
-        .catch(error => { // Tratamento de erro caso a requisição da API falhe
+        .catch(error => {
           console.error('Erro ao buscar dados:', error);
-          setLoading(false)
-          alert('Não foi possível procurar os produtos, erro com o servidor')
+          setLoading(false);
+          alert('Não foi possível procurar os produtos, erro com o servidor');
         });
     }
   }
+  
 
   return (
     <div className="App">
@@ -54,7 +55,7 @@ function App() {
               <button onClick={(e) => { search_products() }} className='search_button'>
                 <FaSearch className='search_icon' />
               </button>
-              <input maxLength={60} onChange={(e) => { setSearch(e.target.value) }} value={Search} placeholder='Chave de fenda' className='search_input' onKeyDown={(e) => { if (e.key === 'Enter') { search_products() } }} />
+              <input maxLength={60} onChange={(e) => { setQuery(e.target.value) }} value={Query} placeholder='Chave de fenda' className='search_input' onKeyDown={(e) => { if (e.key === 'Enter') { search_products() } }} />
               <div>
                 <select defaultValue={Limit} className='limit_select'  onChange={(e) => { setLimit(e.target.value) }}>
                   <option value={1}>1</option>
