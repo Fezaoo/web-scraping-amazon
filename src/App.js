@@ -45,8 +45,8 @@ function App() {
         </header>
       </div>
       <main className='main_content_container'>
-        <section className='content'>
-          <div>
+        <section>
+          <div className='main_content'>
             <p className='description'>
               Procure aqui os seus produtos na amazon
             </p>
