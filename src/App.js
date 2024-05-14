@@ -9,7 +9,7 @@ function App() {
   const [Loading, setLoading] = useState(false) // Animação de Loading
   const [Search, setSearch] = useState('') // Input 
   const [ActualSearch, setActualSearch] = useState('') // Query realizada
-  const [Display, setDisplay] = useState(true) // Exibe o container dos produtos
+  const [Display, setDisplay] = useState(false) // Exibe o container dos produtos
   const [Data, setData] = useState() // Resposta da API
   const [Limit, setLimit] = useState(1) // Limite de produtos a serem pesquisados
 
@@ -20,7 +20,7 @@ function App() {
       setLoading(true)
       if (!Display) { setDisplay(true) }
       setActualSearch(Search)
-      axios.get(`https://flask-api-amazon.vercel.app/api/dados?query=chave&limit=1`) // Requisição da API.  
+      axios.get(`https://flask-api-amazon.vercel.app/api/dados?query=${Search}&limit=${Limit}`) // Requisição da API.  
         .then(response => {
           setData(response.data)
           console.log('Dados recebidos:', response.data);
