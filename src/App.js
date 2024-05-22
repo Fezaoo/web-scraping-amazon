@@ -13,14 +13,14 @@ function App() {
   const [Data, setData] = useState() // Resposta da API
   const [Limit, setLimit] = useState(1) // Limite de produtos a serem pesquisados
 
-  function search_products() {
+  async function search_products() {
     if (Search === '') { alert('Insira um produto para pesquisa!') } // Tratamento de erro para input vazio
     else {
       console.log(Search)
       setLoading(true)
       if (!Display) { setDisplay(true) }
       setActualSearch(Search)
-      axios.get(`https://flask-api-amazon.vercel.app/api/dados?query=${Search}&limit=${Limit}`) // Requisição da API.  
+      await axios.get(`http://127.0.0.1:5000/api/dados?query=${Search}&limit=${Limit}`) // Requisição da API.  
         .then(response => {
           setData(response.data)
           console.log('Dados recebidos:', response.data);
