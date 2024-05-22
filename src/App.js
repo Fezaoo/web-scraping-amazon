@@ -20,7 +20,7 @@ function App() {
       setLoading(true)
       if (!Display) { setDisplay(true) }
       setActualSearch(Search)
-      await axios.get(`http://127.0.0.1:5000/api/dados?query=${Search}&limit=${Limit}`) // Requisição da API.  
+      await axios.get(`https://flask-api-amazon.vercel.app/api/dados?query=${Search}&limit=${Limit}`) // Requisição da API.  
         .then(response => {
           setData(response.data)
           console.log('Dados recebidos:', response.data);
