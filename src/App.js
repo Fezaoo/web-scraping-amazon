@@ -28,7 +28,7 @@ function App() {
           setLoading(false)
         })
         .catch(error => { // Tratamento de erro caso a requisição da API falhe
-          console.error('Erro ao buscar dados:', error);
+          console.log('Erro ao buscar dados:', error);
           setLoading(false)
           alert('Não foi possível procurar os produtos, erro com o servidor')
         });
